@@ -1,6 +1,6 @@
-# Bash-ManageServices
+# Bash-AutoSaveDB
 
-Simple tool for disabling, stopping or starting a list of services with just one command.
+Simple tool for saving database into a timestamped bz2 archive and sending it to a ftp server.
 
 *Note: I use this script for my own projects, it contains only the features I need.*
 
@@ -12,42 +12,37 @@ Simple tool for disabling, stopping or starting a list of services with just one
 
 Requires: a Debian/Ubuntu version of linux and a Bash version ~4.4. [bash-sys](https://github.com/ojullien/bash-sys) installed.
 
-1. [Download a release](https://github.com/ojullien/bash-manageservices/releases) or clone this repository.
+1. [Download a release](https://github.com/ojullien/bash-autosavedb/releases) or clone this repository.
 2. Use [scripts/install.sh](scripts/install.sh) to automatically install the application in the /opt/oju/bash project folder.
 3. If needed, add `PATH="$PATH:/opt/oju/bash/bin"` to the .profile files.
+4. Update the [config.sh](src/app/autosavedb/config.sh) configuration file.
 
 ## Features
 
-This tool is a wrapper to the 'system and service manager' (systemd or SysV) functions. It allows you to disable, start or stop a list of services with just one command. The services are defined in the [config.sh](src/app/savesystemconf/config.sh) file.
+This tool allows you to build timestamped compressed archive with databases data, and send it to a ftp server. The credentials and the databases to save are defined in the [config.sh](src/app/autosavedb/config.sh) file.
 
 ```bash
-Usage: manageservices.sh [options] command
-
-command <disable | start | stop>
-  disable   Disable services from starting automatically.
-  start     Start services.
-  stop      Stop services.
+Usage: autosavedb.sh [options]
 
 options
   -h | --help           Show this help.
   -l | --active-log     Log mode. Content outputs are logged in a file.
   -n | --no-display     Display mode. Nothing is displayed in terminal.
-  -t | --trace          Display var and constants.
   -v | --version        Show the version.
   -w | --wait           Wait user. Wait for user input between actions.
 ```
 
 ## Test
 
-As this tool is just a wrapper to the system and service manager functions, I didn't write any line of 'unit test' code. Sorry.
+I didn't write any line of 'unit test' code. Sorry.
 
 ## Contributing
 
 Thanks you for taking the time to contribute. Please fork the repository and make changes as you'd like.
 
-As I use these scripts for my own projects, they contain only the features I need. But If you have any ideas, just open an [issue](https://github.com/ojullien/bash-manageservices/issues/new/choose) and tell me what you think. Pull requests are also warmly welcome.
+As I use these scripts for my own projects, they contain only the features I need. But If you have any ideas, just open an [issue](https://github.com/ojullien/bash-autosavedb/issues/new/choose) and tell me what you think. Pull requests are also warmly welcome.
 
-If you encounter any **bugs**, please open an [issue](https://github.com/ojullien/bash-manageservices/issues/new/choose).
+If you encounter any **bugs**, please open an [issue](https://github.com/ojullien/bash-autosavedb/issues/new/choose).
 
 Be sure to include a title and clear description,as much relevant information as possible, and a code sample or an executable test case demonstrating the expected behavior that is not occurring.
 
