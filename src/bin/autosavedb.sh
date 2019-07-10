@@ -1,7 +1,8 @@
 #!/bin/bash
 ## -----------------------------------------------------------------------------
 ## Linux Scripts.
-## Auto save database.
+## Simple tool for saving database into a timestamped bz2 archive and sending
+## it to a ftp server.
 ##
 ## @package ojullien\bash\bin
 ## @license MIT <https://github.com/ojullien/bash-autosavedb/blob/master/LICENSE>
