@@ -31,6 +31,11 @@ readonly m_AUTOSAVEDB_DIR_CACHE="/home/${m_AUTOSAVEDB_UPLOAD_DIRECTORY_OWNER}/ou
 readonly m_AUTOSAVEDB_DIR_UPLOAD="/home/${m_AUTOSAVEDB_UPLOAD_DIRECTORY_OWNER}/out/autosavedb/upload"
 
 ## -----------------------------------------------------------------------------
+## Files
+## -----------------------------------------------------------------------------
+readonly m_FTPERR_FILE="${m_AUTOSAVEDB_DIR_CACHE}/${m_DATE}/ftp-${m_DATE}.err"
+
+## -----------------------------------------------------------------------------
 ## List of databases to save
 ## -----------------------------------------------------------------------------
 readonly -a m_AUTOSAVEDB_DATABASES=()
@@ -58,6 +63,7 @@ AutoSaveDB::trace() {
     String::notice "App configuration: AutoSaveDB"
     FileSystem::checkDir "\tCache directory:\t${m_AUTOSAVEDB_DIR_CACHE}" "${m_AUTOSAVEDB_DIR_CACHE}"
     FileSystem::checkDir "\tUpload directory:\t${m_AUTOSAVEDB_DIR_UPLOAD}" "${m_AUTOSAVEDB_DIR_UPLOAD}"
+    FileSystem::checkFile "\tFTP err file:\t\t${m_FTPERR_FILE}" "${m_FTPERR_FILE}"
     String::notice "\tDatabases:\t\t${m_AUTOSAVEDB_DATABASES[*]}"
     return 0
 }
