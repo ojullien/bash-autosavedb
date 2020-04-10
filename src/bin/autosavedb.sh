@@ -124,8 +124,13 @@ String::separateLine
 declare -i iReturn=1
 String::notice "Uploading ..."
 if [[ -f "${m_AUTOSAVEDB_DIR_UPLOAD}/${m_DATE}-db.tar.bz2" ]]; then
-    FTP::put "${m_FTP_SRV}" "${m_FTP_USR}" "${m_FTP_PWD}" "${m_DATE}-db.tar.bz2" "." "${m_AUTOSAVEDB_DIR_UPLOAD}"
-    iReturn=$?
+    if ((m_OPTION_LOG)); then
+        FTP::verbosePut "${m_FTP_SRV}" "${m_FTP_USR}" "${m_FTP_PWD}" "${m_DATE}-db.tar.bz2" "." "${m_AUTOSAVEDB_DIR_UPLOAD}" "${m_FTPERR_FILE}" "${m_LOGFILE}"
+        iReturn=$?
+    else
+        FTP::put "${m_FTP_SRV}" "${m_FTP_USR}" "${m_FTP_PWD}" "${m_DATE}-db.tar.bz2" "." "${m_AUTOSAVEDB_DIR_UPLOAD}" "${m_FTPERR_FILE}"
+        iReturn=$?
+    fi
     String::notice -n "FTP ${m_DATE}-db.tar.bz2:"
     String::checkReturnValueForTruthiness ${iReturn}
 else
@@ -138,6 +143,9 @@ Console::waitUser
 ## END
 ## -----------------------------------------------------------------------------
 m_OPTION_LOG=0
+if [[ -f ${m_FTPERR_FILE} ]]; then
+    FileSystem::copyFile "${m_FTPERR_FILE}" "${m_AUTOSAVEDB_DIR_UPLOAD}"
+fi
 if [[ -f ${m_LOGFILE} ]]; then
     mv "${m_LOGFILE}" "${m_AUTOSAVEDB_DIR_UPLOAD}"
 fi
